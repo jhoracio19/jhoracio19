@@ -9,6 +9,7 @@
 - Currently learning and focusing on building **modern web applications**.  
 - 🔭 I’m currently studying:
 	- Django
+ 	- Angular	 	
 
 - I enjoy writing clean, functional code and turning ideas into simple, useful websites.
 
