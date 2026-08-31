@@ -25,7 +25,7 @@ Soy desarrollador Full-Stack de **Puebla, México**, y estudiante de Ingeniería
 
 </td>
 <td width="40%" valign="center">
-<img src="https://github-readme-stats.vercel.app/api?username=jhoracio19&show_icons=true&theme=tokyonight&hide_border=true&locale=en&count_private=true" alt="GitHub Stats" width="100%"/>
+<img src="./stats.svg" alt="GitHub Stats" width="100%"/>
 </td>
 </tr>
 </table>
@@ -55,7 +55,6 @@ Soy desarrollador Full-Stack de **Puebla, México**, y estudiante de Ingeniería
 <img src="https://img.shields.io/badge/Zustand-%23000000.svg?style=for-the-badge&logo=react&logoColor=white">
 
 **Herramientas, DBs & Cloud**
-
 
 <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white">
 <img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white">
@@ -88,12 +87,12 @@ Desarrollo web y sistemas a medida para pequeños negocios en México. Sitio con
 ## 📊 Estadísticas de GitHub
 
 <div align="center">
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=jhoracio19&layout=compact&theme=tokyonight&hide_border=true&locale=en" alt="Top Languages" height="165"/>
-<img src="https://streak-stats.demolab.com/?user=jhoracio19&theme=tokyonight&hide_border=true" alt="GitHub Streak" height="165"/>
+<img src="./top-langs.svg" alt="Top Languages" height="165"/>
+<img src="./streak.svg" alt="GitHub Streak" height="165"/>
 </div>
 
 <div align="center">
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=jhoracio19&theme=tokyo-night&hide_border=true" alt="Activity Graph" width="95%"/>
+<img src="./activity-graph.svg" alt="Activity Graph" width="95%"/>
 </div>
 
 <br>
