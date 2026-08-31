@@ -14,12 +14,30 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Download stats images
+      - name: Download and validate stats images
         run: |
-          curl -sSL "https://github-readme-stats.vercel.app/api?username=jhoracio19&show_icons=true&theme=tokyonight&hide_border=true&locale=en&count_private=true" -o stats.svg
-          curl -sSL "https://github-readme-stats.vercel.app/api/top-langs/?username=jhoracio19&layout=compact&theme=tokyonight&hide_border=true&locale=en" -o top-langs.svg
-          curl -sSL "https://streak-stats.demolab.com/?user=jhoracio19&theme=tokyonight&hide_border=true" -o streak.svg
-          curl -sSL "https://github-readme-activity-graph.vercel.app/graph?username=jhoracio19&theme=tokyo-night&hide_border=true" -o activity-graph.svg
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+
+          fetch_svg() {
+            url="$1"
+            out="$2"
+            tmp="${out}.tmp"
+            curl -sSL -A "$UA" -H "Accept: image/svg+xml" "$url" -o "$tmp"
+            # Solo reemplazamos el archivo final si la descarga es un SVG válido.
+            # Así, si el servicio falla, se conserva la última versión buena.
+            if head -c 200 "$tmp" | grep -qi "<svg"; then
+              mv "$tmp" "$out"
+              echo "OK: $out actualizado"
+            else
+              echo "AVISO: $out no se actualizó (respuesta inválida de $url)"
+              rm -f "$tmp"
+            fi
+          }
+
+          fetch_svg "https://github-readme-stats.vercel.app/api?username=jhoracio19&show_icons=true&theme=tokyonight&hide_border=true&locale=en&count_private=true" "stats.svg"
+          fetch_svg "https://github-readme-stats.vercel.app/api/top-langs/?username=jhoracio19&layout=compact&theme=tokyonight&hide_border=true&locale=en" "top-langs.svg"
+          fetch_svg "https://streak-stats.demolab.com/?user=jhoracio19&theme=tokyonight&hide_border=true" "streak.svg"
+          fetch_svg "https://github-readme-activity-graph.vercel.app/graph?username=jhoracio19&theme=tokyo-night&hide_border=true" "activity-graph.svg"
 
       - name: Commit and push if changed
         run: |
@@ -27,4 +45,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add stats.svg top-langs.svg streak.svg activity-graph.svg
           git diff --staged --quiet || git commit -m "chore: update stats images"
+          # Trae cualquier cambio nuevo del remoto antes de empujar, para
+          # no chocar si alguien (o tú) editó el repo desde que empezó el Action.
+          git pull --rebase origin main
           git push
